@@ -88,8 +88,10 @@ pluginKeys.cmp = function(cmp)
     }
 end
 
+
 -- lsp 回调函数快捷键设置
 pluginKeys.mapLSP = function(mapbuf)
+
   -- rename
   --[[
   Lspsaga 替换 rn
@@ -130,7 +132,7 @@ pluginKeys.mapLSP = function(mapbuf)
   mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
   -- 未用
   -- mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-  -- mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+  mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
   -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
   -- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
   -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)

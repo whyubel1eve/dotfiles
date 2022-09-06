@@ -39,14 +39,15 @@ font:
   size: 21
  
   normal:
-    family: FiraCode Nerd Font
-    style: Regular
+    family: Fisa Code
+    style: Light
  
   bold:
     family: FiraCode Nerd Font
  
   italic:
-    family: FiraCode Nerd Font
+    family: Fisa Code
+    style: Light Italic
  
 cursor:
   style: 

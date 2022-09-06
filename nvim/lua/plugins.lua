@@ -1,11 +1,22 @@
 local packer = require("packer")
+
+-- vimscript plugin
+local Plug = vim.fn['plug#']
+
+vim.call('plug#begin', '~/.config/nvim/plugged')
+
+Plug 'sainnhe/sonokai'
+
+vim.call('plug#end')
+
+-- lua plugin
 packer.startup(
     function(use)
         use 'wbthomason/packer.nvim'
         -- plugin list
         
         -- colorscheme
-        use 'folke/tokyonight.nvim'
+        -- use 'folke/tokyonight.nvim'
         -- nvim-tree
         use {
             'kyazdani42/nvim-tree.lua', requires = {
@@ -29,6 +40,7 @@ packer.startup(
         use {
            'nvim-treesitter/nvim-treesitter',
             run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+            'p00f/nvim-ts-rainbow',
         }
         -- lsp
         use {
@@ -54,12 +66,23 @@ packer.startup(
 
         -- indent-blankline
         use("lukas-reineke/indent-blankline.nvim")
+        -- ui + keybinding
+        use({
+           "glepnir/lspsaga.nvim",
+            branch = "main",
+            config = function()
+                local saga = require("lspsaga")
 
-        use("tami5/lspsaga.nvim")
+                saga.init_lsp_saga({
+            -- your configuration
+                })
+            end,
+        })
         -- 代码格式化
         use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
+        -- rust-tools
         use("simrat39/rust-tools.nvim")
-
+        -- autopairs
         use {
             "windwp/nvim-autopairs",
             config = function() require("nvim-autopairs").setup {} end

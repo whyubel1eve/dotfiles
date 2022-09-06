@@ -12,59 +12,82 @@ end
 
 -- lspkind
 local lspkind = require('lspkind')
-local lspsaga = require 'lspsaga'
-lspsaga.setup { -- defaults ...
-  debug = false,
-  use_saga_diagnostic_sign = true,
-  -- diagnostic sign
-  error_sign = "",
-  warn_sign = "",
-  hint_sign = "",
-  infor_sign = "",
-  diagnostic_header_icon = "   ",
+local lspsaga = require('lspsaga')
+lspsaga.init_lsp_saga { -- defaults ...
+ border_style = 'single',
+  saga_winblend = 0,
+  -- when cusor in saga float window
+  -- config these keys to move
+  move_in_saga = {
+    prev = '<C-p>',
+    next = '<C-n>',
+  },
+  -- Error,Warn,Info,Hint
+  diagnostic_header = { ' ', ' ', ' ', ' ' },
+  show_diagnostic_source = true,
+  diagnostic_source_bracket = { '❴', '❵' },
   -- code action title icon
-  code_action_icon = " ",
-  code_action_prompt = {
+  code_action_icon = '💡',
+  -- if true can press number to execute the codeaction in codeaction window
+  code_action_num_shortcut = true,
+  code_action_lightbulb = {
     enable = true,
+    enable_in_insert = true,
+    cache_code_action = true,
     sign = true,
+    update_time = 150,
     sign_priority = 40,
     virtual_text = true,
   },
-  finder_definition_icon = "  ",
-  finder_reference_icon = "  ",
-  max_preview_lines = 10,
+  max_preview_lines = 40,
+  scroll_in_preview = {
+    scroll_down = '<C-d>',
+    scroll_up = '<C-u>',
+  },
+  finder_icons = {
+    def = ' ',
+    imp = ' ',
+    ref = ' ',
+  },
+  finder_request_timeout = 1500,
+  -- nvim 0.8 only
+  finder_preview_hl_ns = 0,
   finder_action_keys = {
-    -- open = "o",
-    open = "<CR>",
-    vsplit = "s",
-    split = "i",
-    -- quit = "q",
-    quit = "<ESC>",
-    scroll_down = "<C-f>",
-    scroll_up = "<C-b>",
+    open = 'o',
+    vsplit = 's',
+    split = 'i',
+    tabe = 't',
+    quit = 'q',
   },
   code_action_keys = {
-    -- quit = "q",
-    quit = "<ESC>",
-    exec = "<CR>",
+    quit = 'q',
+    exec = '<CR>',
   },
-  rename_action_keys = {
-    -- quit = "<C-c>",
-    quit = "<ESC>",
-    exec = "<CR>",
-  },
-  definition_preview_icon = "  ",
-  border_style = "single",
-  rename_prompt_prefix = "➤",
-  rename_output_qflist = {
+  rename_action_quit = '<C-c>',
+  rename_in_select = true,
+  definition_preview_icon = ' ',
+  -- winbar must nightly
+  symbol_in_winbar = {
+    in_custom = false,
     enable = false,
-    auto_open_qflist = false,
+    separator = ' ',
+    show_file = true,
+    click_support = false,
   },
+  show_outline = {
+    win_position = 'right',
+    win_with = '',
+    win_width = 30,
+    auto_enter = true,
+    auto_preview = true,
+    virt_text = '┃',
+    jump_key = 'o',
+    auto_refresh = true,
+  },
+  custom_kind = {},
   server_filetype_map = {},
-  diagnostic_prefix_format = "%d. ",
-  diagnostic_message_format = "%m %c",
-  highlight_prefix = false,
 }
+
 lspkind.init({
     -- default: true
     -- with_text = true,
