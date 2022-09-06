@@ -31,11 +31,11 @@ db.custom_center = {
     desc = "Edit Projects                       ",
     action = "edit ~/.local/share/nvim/project_nvim/project_history",
   },
-  -- {
-  --   icon = "  ",
-  --   desc = "Edit .bashrc                        ",
-  --   action = "edit ~/.bashrc",
-  -- },
+  {
+    icon = "  ",
+    desc = "Edit .zshrc                         ",
+    action = "edit ~/.zshrc",
+  },
   -- {
   --   icon = "  ",
   --   desc = "Change colorscheme                  ",
@@ -59,6 +59,7 @@ db.custom_center = {
 
 
 db.custom_header = {
+    [[]],
     [[]],
     [[██████╗  ██████╗  ██████╗██╗███╗   ██╗ █████╗ ███╗   ██╗████████╗███████╗]],
     [[██╔══██╗██╔═══██╗██╔════╝██║████╗  ██║██╔══██╗████╗  ██║╚══██╔══╝██╔════╝]],
