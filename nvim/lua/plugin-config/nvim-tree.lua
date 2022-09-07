@@ -7,10 +7,6 @@ end
 -- 列表操作快捷键
 local list_keys = require('keybindings').nvimTreeList
 nvim_tree.setup({
-    -- 不显示 git 状态图标
-    git = {
-        enable = false,
-    },
     -- project plugin 需要这样设置
     update_cwd = true,
     update_focused_file = {
@@ -22,9 +18,66 @@ nvim_tree.setup({
         dotfiles = true,
         custom = { 'node_modules' },
     },
+      renderer = {
+        add_trailing = false,
+        group_empty = false,
+        highlight_git = false,
+        full_name = false,
+        highlight_opened_files = "none",
+        root_folder_modifier = ":~",
+        indent_markers = {
+          enable = true,
+          inline_arrows = true,
+          icons = {
+            corner = "└",
+            edge = "│",
+            item = "│",
+            none = " ",
+          },
+        },
+        icons = {
+          webdev_colors = true,
+          git_placement = "before",
+          padding = " ",
+          symlink_arrow = " ➛ ",
+          show = {
+            file = true,
+            folder = true,
+            folder_arrow = true,
+            git = false,
+          },
+          glyphs = {
+            default = "",
+            symlink = "",
+            bookmark = "",
+            folder = {
+              arrow_closed = "",
+              arrow_open = "",
+              default = "",
+              open = "",
+              empty = "",
+              empty_open = "",
+              symlink = "",
+              symlink_open = "",
+            },
+            git = {
+              unstaged = "✗",
+              staged = "✓",
+              unmerged = "",
+              renamed = "➜",
+              untracked = "★",
+              deleted = "",
+              ignored = "◌",
+            },
+          },
+        },
+        special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+        symlink_destination = true,
+      },
     view = {
+        adaptive_size = true,
         -- 宽度
-        width = 23,
+        --width = 23,
         -- 也可以 'right'
         side = 'left',
         -- 隐藏根目录

@@ -70,13 +70,6 @@ packer.startup(
         use({
            "glepnir/lspsaga.nvim",
             branch = "main",
-            config = function()
-                local saga = require("lspsaga")
-
-                saga.init_lsp_saga({
-            -- your configuration
-                })
-            end,
         })
         -- 代码格式化
         use({ "jose-elias-alvarez/null-ls.nvim", requires = "nvim-lua/plenary.nvim" })
@@ -86,6 +79,13 @@ packer.startup(
         use {
             "windwp/nvim-autopairs",
             config = function() require("nvim-autopairs").setup {} end
+        }
+        -- comment
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
         }
 end)
 
