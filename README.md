@@ -1,5 +1,5 @@
 :sparkles: pretty cool **neovim** and **Alacritty** config
-:sparkles: contain great italic fonts. Install and configure it in `nvim/init.lua` and `alacritty/alacritty.yml`
+:sparkles: contain great italic fonts. Install and configure it in `nvim/lua/neovide.lua` and `alacritty/alacritty.yml`
 
 - Also provide neovide(GUI) configuration
     - set these in `~/.zshrc`, and do the commands in comment
@@ -10,6 +10,6 @@
     
     
 
-<img src="pictures/p1.png" style="zoom:47%">
+<img src="pictures/p1.png" style="zoom:45%">
 
 <img src="pictures/p2.png" style="zoom:47%">
