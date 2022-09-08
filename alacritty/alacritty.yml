@@ -1,10 +1,10 @@
 # 默认窗口无标题栏，16:9的窗口比例启动
 window:
     dimensions:
-      columns: 143
-      lines: 36
+      columns: 72
+      lines: 21
     opacity: 0.8
-    decorations: buttonless 
+    decorations: buttonless
 
 # 实时重载配置文件，不用重启测试配置选项
 live_config_reload: true
@@ -36,7 +36,7 @@ colors:
  
 # 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
 font:
-  size: 21
+  size: 18
  
   normal:
     family: Fisa Code
