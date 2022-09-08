@@ -1,14 +1,15 @@
-:sparkles: pretty cool **neovim** config
+:sparkles: pretty cool **neovim** and **Alacritty** config
+:sparkles: contain great italic fonts. Install and configure it in `nvim/init.lua` and `alacritty/alacritty.yml`
+
 - Also provide neovide(GUI) configuration
-    - set these in `~/.zprofile`, and do the commands in comment
+    - set these in `~/.zshrc`, and do the commands in comment
     ```sh
-    # For init window size and tabs, Run:
-    #   neovide --geometry=120x32
-    #   neovide --notabs
-    export NEOVIDE_FRAME=transparent
+    alias vi='nvim'
+    alias v='neovide --geometry=120x32 --notabs --frame=transparent'
     ```
-    - Optionally, add in `~/.zshrc`:
-    ```sh
-    alias vi = 'nvim' 
-    alias v = 'neovide'
-    ```
+    
+    
+
+<img src="pictures/p1.png" style="zoom:47%">
+
+<img src="pictures/p2.png" style="zoom:47%">
