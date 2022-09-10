@@ -1,11 +1,9 @@
-# 默认窗口无标题栏，16:9的窗口比例启动
 window:
     dimensions:
-      columns: 72
-      lines: 21
-    opacity: 0.8
+      columns: 70
+      lines: 22
+    opacity: 0.88
     decorations: buttonless
-
 # 实时重载配置文件，不用重启测试配置选项
 live_config_reload: true
  
@@ -34,16 +32,15 @@ colors:
      cyan:    '0x34e2e2'
      white:   '0xeeeeec'
  
-# 字体设置为等宽字体，可以用命令 fc-list 查看你系统的字体
 font:
-  size: 18
+  size: 19
  
   normal:
     family: Fisa Code
     style: Light
  
-  bold:
-    family: FiraCode Nerd Font
+  # bold:
+    # family: FiraCode Nerd Font
  
   italic:
     family: Fisa Code

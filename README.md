@@ -1,16 +1,31 @@
-:sparkles: pretty cool **neovim** and **Alacritty** config
+:sparkles: Personal work environment
 
-:sparkles: contain great italic fonts. Install and configure it in `nvim/lua/neovide.lua` and `alacritty/alacritty.yml`
+:crystal_ball: **Terminal:**
+- [Alacritty](https://github.com/alacritty/alacritty)
 
-- Also provide neovide(GUI) configuration
-    - set these in `~/.zshrc`, then `source ~/.zshrc`.
-    ```sh
-    alias vi='nvim'
-    alias v='neovide --geometry=120x32 --notabs --frame=transparent'
-    ```
-    
-    
+:crystal_ball: **Editor:**
+- [neovim (TUI)](https://github.com/neovim/neovim)
+- [neovide (GUI)](https://github.com/neovide/neovide)
 
-<img src="pictures/p1.png" style="zoom:45%">
+:crystal_ball: **Shell:**
+- [zsh (oh-my-zsh)](https://ohmyz.sh/)
+  - [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
+  - [Syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md)
+  - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
-<img src="pictures/p2.png" style="zoom:47%">
+
+:crystal_ball: **CommandLine: **
+- [navi](https://github.com/denisidoro/navi)
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [bat](https://github.com/sharkdp/bat)
+- [exa](https://github.com/ogham/exa)
+- [fd](https://github.com/sharkdp/fd)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
+
+
+
+Screenshots:
+
+<img src="screenshot/p2.png">
+
+<img src="screenshot/p1.png" style="zoom:45%">

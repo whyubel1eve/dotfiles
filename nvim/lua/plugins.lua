@@ -1,8 +1,5 @@
-local packer = require("packer")
-
 -- vimscript plugin
 local Plug = vim.fn['plug#']
-
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug 'sainnhe/sonokai'
@@ -10,6 +7,7 @@ Plug 'sainnhe/sonokai'
 vim.call('plug#end')
 
 -- lua plugin
+local packer = require("packer")
 packer.startup(
     function(use)
         use 'wbthomason/packer.nvim'
@@ -85,6 +83,13 @@ packer.startup(
             'numToStr/Comment.nvim',
             config = function()
                 require('Comment').setup()
+            end
+        }
+        -- git
+        use {
+            'lewis6991/gitsigns.nvim',
+            config = function()
+                require('gitsigns').setup()
             end
         }
 end)

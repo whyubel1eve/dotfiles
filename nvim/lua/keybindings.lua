@@ -31,16 +31,20 @@ map("n", "s=", "<C-w>=", opt)
 -- Terminal相关
 map("n", "<leader>t", ":sp | terminal<CR>", opt)
 map("n", "<leader>vt", ":vsp | terminal<CR>", opt)
-map("t", "<C-]>", "<C-\\><C-n>", opt)
+map("t", "<Esc>", "<C-\\><C-n>", opt)
 map("t", "<A-h>", [[ <C-\><C-N><C-w>h ]], opt)
 map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
+  -- Float terminal
+map("n", "<leader>d", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
+map("t", "<leader>d", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+
 
 -- 退出
 map("n", "q", ":q<CR>", opt)
--- 保存退出
+-- 保存
 map("n", "<C-s>", ":w<CR>", opt)
 
 -- bufferline
@@ -89,71 +93,29 @@ pluginKeys.cmp = function(cmp)
 end
 
 
--- lsp 回调函数快捷键设置
+-- lspsaga
 pluginKeys.mapLSP = function(mapbuf)
-
-  -- rename
-  --[[
-  Lspsaga 替换 rn
-  mapbuf("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opt)
-  --]]
   mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
-  -- code action
-  --[[
-  Lspsaga 替换 ca
-  mapbuf("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opt)
-  --]]
   mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-  -- go xx
-  --[[
-  --mapbuf("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opt)
-  --]]
-  mapbuf('n', 'gd', '<cmd>Lspsaga preview_definition<CR>', opt)
-    --[[
-  Lspsaga 替换 gh
-  mapbuf("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>", opt)
-  --]]
+  mapbuf('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', opt)
   mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
-  --[[
-  Lspsaga 替换 gr
-  mapbuf("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opt)
-  --]]
   mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
-  --[[
-  Lspsaga 替换 gp, gj, gk
-  mapbuf("n", "gp", "<cmd>lua vim.diagnostic.open_float()<CR>", opt)
-  mapbuf("n", "gj", "<cmd>lua vim.diagnostic.goto_next()<CR>", opt)
-  mapbuf("n", "gk", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opt)
-  --]]
-  -- diagnostic
   mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
   mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
   mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
   mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
   mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
   mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
-  -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
-  -- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
-  -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
-  -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
-  -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
-  -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
-
 end
 
 -- nvim-tree
--- alt + m 键打开关闭tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
--- 列表快捷键
 pluginKeys.nvimTreeList = {
   -- 打开文件或文件夹
   { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
   -- 分屏打开文件
   { key = "v", action = "vsplit" },
   { key = "h", action = "split" },
-  -- 显示隐藏文件
-  { key = "i", action = "toggle_custom" }, -- 对应 filters 中的 custom (node_modules)
-  { key = ".", action = "toggle_dotfiles" }, -- Hide (dotfiles)
   -- 文件操作
   { key = "<F5>", action = "refresh" },
   { key = "a", action = "create" },
