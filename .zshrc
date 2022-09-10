@@ -1,6 +1,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 plugins=(
 	git
@@ -17,6 +19,7 @@ export https_proxy=$http_proxy
 
 export GOPATH=/Users/issak/code/go
 export GOBIN=$GOPATH/bin
+
 export PATH=$PATH:$GOPATH:$GOBIN
 
 export BAT_THEME=Coldark-Dark
@@ -24,6 +27,3 @@ eval "$(zoxide init zsh)"
 
 alias vi='nvim'
 alias v='neovide --notabs --frame=buttonless'
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

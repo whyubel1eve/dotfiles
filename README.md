@@ -14,7 +14,7 @@
   - [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 
-:crystal_ball: **CommandLine: **
+:crystal_ball: **CommandLine:**
 - [navi](https://github.com/denisidoro/navi)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [bat](https://github.com/sharkdp/bat)
