@@ -51,6 +51,8 @@ cursor:
     shape: Block
 
 key_bindings:
+
+  - { key: R,          mods: Command,    action: CreateNewWindow }
 # Alt Meta key 
   - { key: A,         mods: Alt,       chars: "\x1ba"                       }
   - { key: B,         mods: Alt,       chars: "\x1bb"                       }
