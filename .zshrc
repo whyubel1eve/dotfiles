@@ -16,6 +16,9 @@ source $ZSH/oh-my-zsh.sh
 #export ALL_PROXY=socks5://127.0.0.1:7890
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=$http_proxy
+# wsl2
+#host_ip=$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " ")
+#export ALL_PROXY="http://$host_ip:7890"
 
 export GOPATH=/Users/issak/code/go
 export GOBIN=$GOPATH/bin
