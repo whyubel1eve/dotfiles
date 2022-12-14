@@ -1,28 +1,27 @@
--- vimscript plugin
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.config/nvim/plugged')
-
-Plug 'sainnhe/sonokai'
-
-vim.call('plug#end')
-
 -- lua plugin
 local packer = require("packer")
 packer.startup(
     function(use)
         use 'wbthomason/packer.nvim'
         -- plugin list
-        
+
         -- colorscheme
-        -- use 'folke/tokyonight.nvim'
+        use({
+            'glepnir/zephyr-nvim',
+            requires = { 'nvim-treesitter/nvim-treesitter', opt = true },
+        })
         -- nvim-tree
         use {
             'kyazdani42/nvim-tree.lua', requires = {
-                'kyazdani42/nvim-web-devicons', -- optional, for file icons 
+                'kyazdani42/nvim-web-devicons', -- optional, for file icons
             }, tag = 'nightly' -- optional, updated every week. (see issue #1193)
         }
+        -- tabline
+        use { 'kdheepak/tabline.nvim',
+            requires = { { 'hoob3rt/lualine.nvim', opt = true },
+                { 'kyazdani42/nvim-web-devicons', opt = true }, 'moll/vim-bbye' } }
         -- bufferline
-        use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" }})
+        -- use({ "akinsho/bufferline.nvim", requires = { "kyazdani42/nvim-web-devicons", "moll/vim-bbye" } })
         -- lualine
         use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
         use("arkav/lualine-lsp-progress")
@@ -30,13 +29,13 @@ packer.startup(
         use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } }
         -- telescope extensions
         use "LinArcX/telescope-env.nvim"
-         -- dashboard-nvim
+        -- dashboard-nvim
         use("glepnir/dashboard-nvim")
         -- project
         use("ahmedkhalf/project.nvim")
-         -- treesitter
+        -- treesitter
         use {
-           'nvim-treesitter/nvim-treesitter',
+            'nvim-treesitter/nvim-treesitter',
             run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
             'p00f/nvim-ts-rainbow',
         }
@@ -66,7 +65,7 @@ packer.startup(
         use("lukas-reineke/indent-blankline.nvim")
         -- ui + keybinding
         use({
-           "glepnir/lspsaga.nvim",
+            "glepnir/lspsaga.nvim",
             branch = "main",
         })
         -- 代码格式化
@@ -92,13 +91,13 @@ packer.startup(
                 require('gitsigns').setup()
             end
         }
-end)
+    end)
 
 
--- 每次保存 plugins.lua 自动安装插件
+-- autosave
 pcall(
-  vim.cmd,
-  [[
+    vim.cmd,
+    [[
     augroup packer_user_config
     autocmd!
     autocmd BufWritePost plugins.lua source <afile> | PackerSync

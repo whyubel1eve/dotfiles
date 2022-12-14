@@ -3,7 +3,7 @@ vim.g.maplocalleader = " "
 
 local map = vim.api.nvim_set_keymap
 -- 复用 opt 参数
-local opt = {noremap = true, silent = true }
+local opt = { noremap = true, silent = true }
 
 -- 取消 s 默认功能
 map("n", "s", "", opt)
@@ -37,7 +37,7 @@ map("t", "<A-j>", [[ <C-\><C-N><C-w>j ]], opt)
 map("t", "<A-k>", [[ <C-\><C-N><C-w>k ]], opt)
 map("t", "<A-l>", [[ <C-\><C-N><C-w>l ]], opt)
 
-  -- Float terminal
+-- Float terminal
 map("n", "<leader>d", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
 map("t", "<leader>d", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
 
@@ -49,14 +49,21 @@ map("n", "<C-s>", ":w<CR>", opt)
 
 -- bufferline
 -- 左右Tab切换
-map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
-map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
+-- map("n", "<C-h>", ":BufferLineCyclePrev<CR>", opt)
+-- map("n", "<C-l>", ":BufferLineCycleNext<CR>", opt)
 -- 关闭
 --"moll/vim-bbye"
-map("n", "<C-w>", ":Bdelete!<CR>", opt)
-map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
-map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
-map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
+-- map("n", "<C-w>", ":Bdelete!<CR>", opt)
+-- map("n", "<leader>bl", ":BufferLineCloseRight<CR>", opt)
+-- map("n", "<leader>bh", ":BufferLineCloseLeft<CR>", opt)
+-- map("n", "<leader>bc", ":BufferLinePickClose<CR>", opt)
+
+-- tabline
+-- 左右Tab切换
+map("n", "<C-h>", ":TablineBufferPrevious<CR>", opt)
+map("n", "<C-l>", ":TablineBufferNext<CR>", opt)
+-- 关闭
+map("n", "<C-w>", ":Bdelete<CR>", opt)
 
 -- Telescope
 -- 查找文件
@@ -71,7 +78,7 @@ local pluginKeys = {}
 pluginKeys.cmp = function(cmp)
     return {
         -- 出现补全
-        ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+        ["<A-.>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
         -- 取消
         ["<A-,>"] = cmp.mapping({
             i = cmp.mapping.abort(),
@@ -87,65 +94,63 @@ pluginKeys.cmp = function(cmp)
             behavior = cmp.ConfirmBehavior.Replace
         }),
         -- 如果窗口内容太多，可以滚动
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     }
 end
 
 
 -- lspsaga
 pluginKeys.mapLSP = function(mapbuf)
-  mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
-  mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
-  mapbuf('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', opt)
-  mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
-  mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
-  mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
-  mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
-  mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
-  mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opt)
-  mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
-  mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
+    mapbuf("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opt)
+    mapbuf("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opt)
+    mapbuf('n', 'gd', '<cmd>Lspsaga peek_definition<CR>', opt)
+    mapbuf("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opt)
+    mapbuf("n", "gr", "<cmd>Lspsaga lsp_finder<CR>", opt)
+    mapbuf("n", "gp", "<cmd>Lspsaga show_line_diagnostics<CR>", opt)
+    mapbuf("n", "gj", "<cmd>Lspsaga diagnostic_jump_next<cr>", opt)
+    mapbuf("n", "gk", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opt)
+    mapbuf("n", "<leader>f", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", opt)
+    mapbuf("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opt)
+    mapbuf("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opt)
 end
 
 -- nvim-tree
 map("n", "<A-m>", ":NvimTreeToggle<CR>", opt)
 pluginKeys.nvimTreeList = {
-  -- 打开文件或文件夹
-  { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
-  -- 分屏打开文件
-  { key = "v", action = "vsplit" },
-  { key = "h", action = "split" },
-  -- 文件操作
-  { key = "<F5>", action = "refresh" },
-  { key = "a", action = "create" },
-  { key = "d", action = "remove" },
-  { key = "r", action = "rename" },
-  { key = "x", action = "cut" },
-  { key = "c", action = "copy" },
-  { key = "p", action = "paste" },
-  { key = "s", action = "system_open" },
+    -- 打开文件或文件夹
+    { key = { "<CR>", "o", "<2-LeftMouse>" }, action = "edit" },
+    -- 分屏打开文件
+    { key = "v", action = "vsplit" },
+    { key = "h", action = "split" },
+    -- 文件操作
+    { key = "<F5>", action = "refresh" },
+    { key = "a", action = "create" },
+    { key = "d", action = "remove" },
+    { key = "r", action = "rename" },
+    { key = "x", action = "cut" },
+    { key = "c", action = "copy" },
+    { key = "p", action = "paste" },
+    { key = "s", action = "system_open" },
 }
 -- Telescope 列表中 插入模式快捷键
 pluginKeys.telescopeList = {
-  i = {
-    -- 上下移动
-    ["<C-j>"] = "move_selection_next",
-    ["<C-k>"] = "move_selection_previous",
-    ["<Down>"] = "move_selection_next",
-    ["<Up>"] = "move_selection_previous",
-    -- 历史记录
-    ["<C-n>"] = "cycle_history_next",
-    ["<C-p>"] = "cycle_history_prev",
-    -- 关闭窗口
-    ["<C-c>"] = "close",
-    -- 预览窗口上下滚动
-    ["<C-u>"] = "preview_scrolling_up",
-    ["<C-d>"] = "preview_scrolling_down",
-  },
+    i = {
+        -- 上下移动
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous",
+        ["<Down>"] = "move_selection_next",
+        ["<Up>"] = "move_selection_previous",
+        -- 历史记录
+        ["<C-n>"] = "cycle_history_next",
+        ["<C-p>"] = "cycle_history_prev",
+        -- 关闭窗口
+        ["<C-c>"] = "close",
+        -- 预览窗口上下滚动
+        ["<C-u>"] = "preview_scrolling_up",
+        ["<C-d>"] = "preview_scrolling_down",
+    },
 }
 
 
 return pluginKeys
-
-

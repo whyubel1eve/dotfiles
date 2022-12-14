@@ -1,6 +1,6 @@
 local status, null_ls = pcall(require, 'null-ls')
 if not status then
-    vim.notify('没有找到 null-ls')
+    vim.notify('null-ls not found')
     return
 end
 
@@ -14,10 +14,12 @@ null_ls.setup({
         formatting.shfmt,
         -- gofmt
         formatting.gofmt,
+        -- goimports
+        formatting.goimports,
         -- rust
         formatting.rustfmt,
         -- frontend
-        formatting.prettier.with({ -- 只比默认配置少了 markdown
+        formatting.prettier.with({
             filetypes = {
                 'javascript',
                 'javascriptreact',
@@ -38,8 +40,8 @@ null_ls.setup({
 
     -- 保存自动格式化
     on_attach = function(client)
-        if client.resolved_capabilities.document_formatting then
-            vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()')
+        if client.server_capabilities.document_formatting then
+            vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.format()')
         end
     end,
 })

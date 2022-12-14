@@ -4,7 +4,8 @@
  require('colorscheme')
 
  require('plugin-config.nvim-tree')
- require('plugin-config.bufferline')
+ -- require('plugin-config.bufferline')
+ require('plugin-config.tabline')
  require('plugin-config.lualine')
  require('plugin-config.telescope')
  require('plugin-config.dashboard')

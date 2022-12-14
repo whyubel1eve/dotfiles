@@ -1,7 +1,7 @@
 local status, nvim_tree = pcall(require, "nvim-tree")
 if not status then
     vim.notify("没有找到 nvim-tree")
-  return
+    return
 end
 
 -- 列表操作快捷键
@@ -15,10 +15,10 @@ nvim_tree.setup({
     },
     -- 隐藏 .文件 和 node_modules 文件夹
     filters = {
-        dotfiles = true,
+        dotfiles = false,
         custom = { 'node_modules' },
     },
-      renderer = {
+    renderer = {
         add_trailing = false,
         group_empty = false,
         highlight_git = false,
@@ -26,54 +26,54 @@ nvim_tree.setup({
         highlight_opened_files = "none",
         root_folder_modifier = ":~",
         indent_markers = {
-          enable = true,
-          inline_arrows = true,
-          icons = {
-            corner = "└",
-            edge = "│",
-            item = "│",
-            none = " ",
-          },
+            enable = true,
+            inline_arrows = true,
+            icons = {
+                corner = "└",
+                edge = "│",
+                item = "│",
+                none = " ",
+            },
         },
         icons = {
-          webdev_colors = true,
-          git_placement = "before",
-          padding = " ",
-          symlink_arrow = " ➛ ",
-          show = {
-            file = true,
-            folder = true,
-            folder_arrow = true,
-            git = false,
-          },
-          glyphs = {
-            default = "",
-            symlink = "",
-            bookmark = "",
-            folder = {
-              arrow_closed = "",
-              arrow_open = "",
-              default = "",
-              open = "",
-              empty = "",
-              empty_open = "",
-              symlink = "",
-              symlink_open = "",
+            webdev_colors = true,
+            git_placement = "before",
+            padding = " ",
+            symlink_arrow = " ➛ ",
+            show = {
+                file = true,
+                folder = true,
+                folder_arrow = true,
+                git = false,
             },
-            git = {
-              unstaged = "✗",
-              staged = "✓",
-              unmerged = "",
-              renamed = "➜",
-              untracked = "★",
-              deleted = "",
-              ignored = "◌",
+            glyphs = {
+                default = "",
+                symlink = "",
+                bookmark = "",
+                folder = {
+                    arrow_closed = "",
+                    arrow_open = "",
+                    default = "",
+                    open = "",
+                    empty = "",
+                    empty_open = "",
+                    symlink = "",
+                    symlink_open = "",
+                },
+                git = {
+                    unstaged = "✗",
+                    staged = "✓",
+                    unmerged = "",
+                    renamed = "➜",
+                    untracked = "★",
+                    deleted = "",
+                    ignored = "◌",
+                },
             },
-          },
         },
         special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
         symlink_destination = true,
-      },
+    },
     view = {
         adaptive_size = true,
         -- 宽度
@@ -111,4 +111,3 @@ nvim_tree.setup({
 vim.cmd([[
   autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 ]])
-
