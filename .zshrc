@@ -1,32 +1,41 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 plugins=(
 	git
-    vi-mode
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+alias install="sudo pacman -S"
+alias update="sudo pacman -Syu"
+alias remove="sudo pacman -Rs"
+alias v="nvim"
+alias nv="neovide"
+alias ls="exa"
+alias x="exa -al"
 
-#export ALL_PROXY=socks5://127.0.0.1:7890
+# proxy
 export http_proxy=http://127.0.0.1:7890
-export https_proxy=$http_proxy
-# wsl2
-#host_ip=$(cat /etc/resolv.conf |grep "nameserver" |cut -f 2 -d " ")
-#export ALL_PROXY="http://$host_ip:7890"
+export https_proxy=http://127.0.0.1:7890
 
-export GOPATH=/Users/issak/code/go
+
+# Go
+export GOPATH=/Users/haverno/Code/.go
 export GOBIN=$GOPATH/bin
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 
-export PATH=$PATH:$GOPATH:$GOBIN
+export PATH=$PATH:$GOBIN
 
-export BAT_THEME=Coldark-Dark
 eval "$(zoxide init zsh)"
 
-alias vi='nvim'
-alias v='neovide --notabs --frame=buttonless'
+source $ZSH/oh-my-zsh.sh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

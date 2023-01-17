@@ -1,21 +1,34 @@
- require('basic')
- require('keybindings')
- require('plugins')
- require('colorscheme')
+vim.defer_fn(function()
+  pcall(require, "impatient")
+end, 0)
 
- require('plugin-config.nvim-tree')
- -- require('plugin-config.bufferline')
- require('plugin-config.tabline')
- require('plugin-config.lualine')
- require('plugin-config.telescope')
- require('plugin-config.dashboard')
- require('plugin-config.project')
- require('plugin-config.nvim-treesitter')
- require('plugin-config.indent-blankline')
+require "core"
+require "core.options"
 
- require('lsp.setup')
- require('lsp.cmp')
- require('lsp.ui')
- require('lsp.null-ls')
+-- setup packer + plugins
+local fn = vim.fn
+local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
 
- require('neovide')
+if fn.empty(fn.glob(install_path)) > 0 then
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
+  print "Cloning packer .."
+  fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
+
+  -- install plugins + compile their configs
+  vim.cmd "packadd packer.nvim"
+  require "plugins"
+  vim.cmd "PackerSync"
+
+  -- install binaries from mason.nvim & tsparsers
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "PackerComplete",
+    callback = function()
+      vim.cmd "bw | silent! MasonInstallAll" -- close packer window
+      require("packer").loader "nvim-treesitter"
+    end,
+  })
+end
+
+pcall(require, "custom")
+
+require("core.utils").load_mappings()

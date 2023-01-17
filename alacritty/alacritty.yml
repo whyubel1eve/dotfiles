@@ -1,0 +1,36 @@
+window:
+  dimensions:
+    columns: 75
+    lines: 22
+  opacity: 0.95
+  decorations: full
+  title: ""
+  dynamic_title: false
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
+
+live_config_reload: true
+
+# theme
+import:
+  - ~/.alacritty-colorscheme/themes/night_owlish_light.yaml
+
+font:
+  size: 14
+ 
+  normal:
+    family: FiraCode Nerd Font
+    style: Regular
+ 
+cursor:
+  style: 
+    shape: Block
+
+key_bindings:
+  - { key: C, mods: Alt, action: Copy }
+  - { key: V, mods: Alt, action: Paste } 
+
+
