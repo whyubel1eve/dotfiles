@@ -36,15 +36,8 @@ font:
   size: 19
  
   normal:
-    family: Fisa Code
-    style: Light
- 
-  # bold:
-    # family: FiraCode Nerd Font
- 
-  italic:
-    family: Fisa Code
-    style: Light Italic
+    family: FiraCode Nerd Font
+    style: Regular
  
 cursor:
   style: 
